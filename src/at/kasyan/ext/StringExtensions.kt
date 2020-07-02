@@ -13,14 +13,14 @@ import kotlin.math.absoluteValue
  * @param random the RNG(Random Number Generator) which provides random numbers
  * @return a random String
  */
-fun String.Companion.randString(vararg alphabets: CharRange, length: Int, random: Random = SecureRandom()): String {
+fun String.Companion.randString(length: Int, vararg alphabets: CharRange, random: Random = SecureRandom()): String {
     val alphabet = alphabets.fold("",
-        { acc, crange ->
-            acc + crange.fold("",
-                { accumalator, c ->
-                    accumalator + c
-                })
-        })
+            { acc, crange ->
+                acc + crange.fold("",
+                        { accumalator, c ->
+                            accumalator + c
+                        })
+            })
     return alphabet.randString(length, random)
 }
 
