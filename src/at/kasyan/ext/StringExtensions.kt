@@ -5,7 +5,7 @@ import java.util.*
 import kotlin.math.absoluteValue
 
 /**
- * Creates a String with a specified length which only
+ * Creates a random String with a specified length which only
  * contains characters of the given alphabet
  *
  * @param alphabets constructs an alphabet by appending every char to a string
@@ -14,9 +14,11 @@ import kotlin.math.absoluteValue
  * @return a random String
  */
 fun String.Companion.randString(length: Int, vararg alphabets: CharRange, random: Random = SecureRandom()): String {
-    val alphabet = alphabets.fold(""
+    val alphabet = alphabets.fold(
+        ""
     ) { acc, crange ->
-        acc + crange.fold(""
+        acc + crange.fold(
+            ""
         ) { accumulator, c ->
             accumulator + c
         }
@@ -26,7 +28,21 @@ fun String.Companion.randString(length: Int, vararg alphabets: CharRange, random
 
 
 /**
- * Creates a String with a specified length which only
+ * Creates a random String with a specified length which only contains
+ * upper/lower cased letters and digits from 0 - 9
+ *
+ * Regex which matches this string: [A-Za-Z0-9]{n}
+ * where n is the length of the string
+ * @param length the length of the created string
+ * @param random the RNG(Random Number Generator) which provides random numbers
+ * @return a random String
+ */
+fun String.Companion.randAlphaNumericString(length: Int, random: Random = SecureRandom()): String {
+    return String.randString(length, 'A'..'Z', 'a'..'z', '0'..'9', random = random)
+}
+
+/**
+ * Creates a random String with a specified length which only
  * contains characters of the given alphabet
  *
  * @param alphabet the alphabet from which is chosen
@@ -34,11 +50,12 @@ fun String.Companion.randString(length: Int, vararg alphabets: CharRange, random
  * @param random the RNG(Random Number Generator) which provides random numbers
  * @return a random String
  */
-fun String.Companion.randString(alphabet: String, length: Int, random: Random = SecureRandom()) = alphabet.randString(length, random)
+fun String.Companion.randString(alphabet: String, length: Int, random: Random = SecureRandom()) =
+    alphabet.randString(length, random)
 
 
 /**
- * Creates a String with a specified length which only
+ * Creates a random String with a specified length which only
  * contains characters of the given alphabet
  *
  * @param length the length of the created string
@@ -56,6 +73,6 @@ fun String.randString(length: Int, random: Random = SecureRandom()): String {
  *
  * @param n how often the string is repeated
  *
- * @return the string repeated n this
+ * @return the string repeated n times
  */
 private operator fun String.times(n: Int): String = this.repeat(n)
