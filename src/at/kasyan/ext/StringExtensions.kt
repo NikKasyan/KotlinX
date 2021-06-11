@@ -1,4 +1,4 @@
-package at.kasyan.ext
+package at.kasyan.util
 
 import java.security.SecureRandom
 import java.util.*
@@ -14,13 +14,13 @@ import kotlin.math.absoluteValue
  * @return a random String
  */
 fun String.Companion.randString(length: Int, vararg alphabets: CharRange, random: Random = SecureRandom()): String {
-    val alphabet = alphabets.fold("",
-            { acc, crange ->
-                acc + crange.fold("",
-                        { accumalator, c ->
-                            accumalator + c
-                        })
-            })
+    val alphabet = alphabets.fold(""
+    ) { acc, crange ->
+        acc + crange.fold(""
+        ) { accumulator, c ->
+            accumulator + c
+        }
+    }
     return alphabet.randString(length, random)
 }
 
