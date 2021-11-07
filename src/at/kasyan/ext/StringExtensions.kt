@@ -1,7 +1,8 @@
-package at.kasyan.util
+package at.kasyan.ext
 
 import java.security.SecureRandom
 import java.util.*
+import java.util.regex.Pattern
 import kotlin.math.absoluteValue
 
 /**
@@ -76,3 +77,16 @@ fun String.randString(length: Int, random: Random = SecureRandom()): String {
  * @return the string repeated n times
  */
 private operator fun String.times(n: Int): String = this.repeat(n)
+
+fun String.replace(patternString: String, replaceGroup: (String) -> String): String {
+    return this.replace(patternString.toPattern(), replaceGroup)
+}
+
+fun String.replace(pattern: Pattern, replaceGroup: (String) -> (String)): String {
+    val matcher = pattern.matcher(this)
+    var newString = this
+    while(matcher.find()) {
+        newString = newString.replaceFirst(matcher.group(), replaceGroup(matcher.group()))
+    }
+    return newString
+}
