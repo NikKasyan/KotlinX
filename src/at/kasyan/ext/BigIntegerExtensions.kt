@@ -7,7 +7,6 @@ import java.math.BigInteger
  * Operator overloading for BigInteger + Long/Int
  */
 operator fun BigInteger.rem(i: Int): BigInteger = this % i.toBigInteger()
-
 operator fun BigInteger.rem(i: Long): BigInteger = this % i.toBigInteger()
 
 operator fun BigInteger.plus(i: Int): BigInteger = this + i.toBigInteger()
