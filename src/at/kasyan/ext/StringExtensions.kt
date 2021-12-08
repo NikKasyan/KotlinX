@@ -76,7 +76,7 @@ fun String.randString(length: Int, random: Random = SecureRandom()): String {
  *
  * @return the string repeated n times
  */
-private operator fun String.times(n: Int): String = this.repeat(n)
+operator fun String.times(n: Int): String = this.repeat(n)
 
 fun String.replace(patternString: String, replaceGroup: (String) -> String): String {
     return this.replace(patternString.toPattern(), replaceGroup)
@@ -89,4 +89,39 @@ fun String.replace(pattern: Pattern, replaceGroup: (String) -> (String)): String
         newString = newString.replaceFirst(matcher.group(), replaceGroup(matcher.group()))
     }
     return newString
+}
+
+/**
+ * Checks if the current string contains all specified Characters.
+ *
+ * @param charArray characters to check
+ *
+ * @return true if the string contains all characters else false
+ */
+fun CharSequence.contains(charArray: CharArray): Boolean {
+    for (char in charArray) {
+        if (char !in this) return false
+    }
+    return true
+}
+
+/**
+ * Checks if the current string contains all specified Characters.
+ *
+ * @param charArray characters to check
+ *
+ * @return true if the string contains all characters else false
+ */
+fun CharSequence.contains(charArray: Iterable<Char>): Boolean {
+    for (char in charArray) {
+        if (char !in this) return false
+    }
+    return true
+}
+
+/**
+ * Sorts the given String and returns a new
+ */
+fun String.sorted(): String {
+    return this.toCharArray().sorted().joinToString("")
 }
