@@ -46,3 +46,15 @@ operator fun <T> Array<T>.get(intRange: IntRange): Array<T> {
 operator fun <E> List<E>.get(intRange: IntRange): List<E> {
     return this.slice(intRange)
 }
+
+
+/**
+ * Reverses the map by changing the Value to the key and the key to the value
+ */
+fun <K, V> Map<K, V>.reverse(): Map<V, K> {
+    val map = mutableMapOf<V, K>()
+    for (key in keys) {
+        map[this[key]!!] = key
+    }
+    return map
+}
