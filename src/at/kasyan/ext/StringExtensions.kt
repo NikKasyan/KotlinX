@@ -85,7 +85,7 @@ fun String.replace(patternString: String, replaceGroup: (String) -> String): Str
 fun String.replace(pattern: Pattern, replaceGroup: (String) -> (String)): String {
     val matcher = pattern.matcher(this)
     var newString = this
-    while(matcher.find()) {
+    while (matcher.find()) {
         newString = newString.replaceFirst(matcher.group(), replaceGroup(matcher.group()))
     }
     return newString
@@ -124,4 +124,9 @@ fun CharSequence.contains(charArray: Iterable<Char>): Boolean {
  */
 fun String.sorted(): String {
     return this.toCharArray().sorted().joinToString("")
+}
+
+
+operator fun String.get(intRange: IntRange): String {
+    return this.substring(intRange.first, intRange.last)
 }
