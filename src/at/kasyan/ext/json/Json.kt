@@ -203,18 +203,18 @@ class JsonParser(private val text: String) {
         }
     }
 
-    private fun isCharacter(char: Char): Boolean {
-        val range = ' '..Char.MAX_VALUE;
-        if (char == '"' || char == '\\') return false
-        return char in range
-    }
-
     private fun skip(string: String) {
         while (isValidIndex(index) && text[index] in string) index++
     }
 
     private fun skip(predicate: Predicate<Char>) {
         while (isValidIndex(index) && predicate.test(text[index])) index++
+    }
+
+    private fun isCharacter(char: Char): Boolean {
+        val range = ' '..Char.MAX_VALUE;
+        if (char == '"' || char == '\\') return false
+        return char in range
     }
 
 }
