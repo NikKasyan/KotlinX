@@ -18,7 +18,7 @@ class JsonParser(private val text: String) {
     fun parse(): JsonElement {
         if (text.isEmpty() || text.isBlank()) TODO("Text may not be empty or blank")
         val element = parseElement()
-        if (index < text.length) TODO("You fucked up")
+        if (index < text.length) TODO("Invalid Json Syntax")
         return element
     }
 
